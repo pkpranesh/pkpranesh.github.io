@@ -95,10 +95,10 @@ h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.4vw,2.4rem)
 
 /* ---------- Projects ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
-.card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.8rem;transition:border-color .3s,transform .3s,box-shadow .3s}
-.card:hover{border-color:rgba(0,212,255,.55);transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
-.card.star{background:linear-gradient(180deg,#1b0d13,#110b11);border-color:rgba(155,15,24,.6);box-shadow:inset 0 2px 0 var(--blood)}
-.card.star:hover{border-color:var(--blood-hi);box-shadow:inset 0 2px 0 var(--blood-hi),0 18px 40px rgba(120,10,18,.35)}
+.card{position:relative;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(240px circle at var(--gx,50%) var(--gy,-30%),rgba(229,66,77,.12),transparent 70%),var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.8rem;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease-out,border-color .3s,box-shadow .3s}
+.card:hover{border-color:rgba(229,66,77,.6);transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);box-shadow:0 24px 44px rgba(0,0,0,.55),0 0 26px rgba(155,15,24,.22)}
+.card.star{background:radial-gradient(240px circle at var(--gx,50%) var(--gy,-30%),rgba(229,66,77,.2),transparent 70%),linear-gradient(180deg,#1b0d13,#110b11);border-color:rgba(155,15,24,.6);box-shadow:inset 0 2px 0 var(--blood)}
+.card.star:hover{border-color:var(--blood-hi);box-shadow:inset 0 2px 0 var(--blood-hi),0 24px 44px rgba(0,0,0,.55),0 0 30px rgba(155,15,24,.4)}
 .card.hide{display:none}
 .card.pop{animation:pop .45s cubic-bezier(.2,.7,.2,1)}
 @keyframes pop{from{opacity:0;transform:scale(.97)}}
@@ -133,6 +133,28 @@ h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.4vw,2.4rem)
 .mail:hover{color:var(--blood-hi)}
 footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:1.5rem 0;color:var(--muted);font-size:.85rem;background:#05070a}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}
+
+/* ---------- Hover: waves, ripples, 3D ---------- */
+.card>*{position:relative;z-index:1}
+.card::before,.card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;pointer-events:none;opacity:0;transform:translateY(34px);transition:opacity .5s,transform .7s cubic-bezier(.2,.7,.2,1);
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40' preserveAspectRatio='none'><path d='M0 20Q50 0 100 20T200 20V40H0Z' fill='rgba(155,15,24,.38)'/></svg>") 0 0/200px 40px repeat-x,
+  linear-gradient(rgba(155,15,24,.38),rgba(155,15,24,.12)) 0 39px/100% 51px no-repeat;animation:wave 5s linear infinite}
+.card::after{bottom:-16px;animation-duration:8s;animation-direction:reverse}
+.card:hover::before{opacity:1;transform:none}
+.card:hover::after{opacity:.55;transform:none}
+@keyframes wave{from{background-position:0 0,0 39px}to{background-position:200px 0,0 39px}}
+.btn,.filters button,.group{position:relative;overflow:hidden}
+.ripple{position:absolute;left:0;top:0;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;border:1.5px solid rgba(229,66,77,.75);pointer-events:none;z-index:0;animation:ripple 1.1s ease-out forwards}
+@keyframes ripple{from{transform:scale(0);opacity:.9}to{transform:scale(16);opacity:0}}
+.links a,.links2 a{padding-bottom:5px}
+.links a:hover{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='4' viewBox='0 0 12 4'><path d='M0 2Q3 0 6 2T12 2' fill='none' stroke='%23e5424d' stroke-width='1.2'/></svg>") 0 100%/12px 4px repeat-x;animation:wavex .7s linear infinite}
+.links2 a:hover{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='4' viewBox='0 0 12 4'><path d='M0 2Q3 0 6 2T12 2' fill='none' stroke='%2300d4ff' stroke-width='1.2'/></svg>") 0 100%/12px 4px repeat-x;animation:wavex .7s linear infinite}
+.card.star .links2 a:hover{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='4' viewBox='0 0 12 4'><path d='M0 2Q3 0 6 2T12 2' fill='none' stroke='%23ff8089' stroke-width='1.2'/></svg>")}
+@keyframes wavex{to{background-position:12px 100%}}
+.tags span{transition:transform .25s,border-color .25s}
+.tags span:hover{transform:translateY(-3px);border-color:var(--blood-hi)}
+.chips span{transition:border-color .2s,color .2s}
+.chips span:hover{border-color:var(--blood-hi);color:var(--text)}
 
 /* ---------- Responsive ---------- */
 @media(max-width:860px){.stack{grid-template-columns:repeat(2,1fr)}.group:nth-child(3n){border-right:1px solid var(--line)}.group:nth-child(2n){border-right:0}.group:nth-last-child(-n+3){border-bottom:1px solid var(--line)}.group:nth-last-child(-n+2){border-bottom:0}}
@@ -325,6 +347,26 @@ document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('clic
     if(show){c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop')}
   });
 }));
+
+// Hover ripples + minimal 3D tilt
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(fine){
+  const ripple=(el,e)=>{const r=el.getBoundingClientRect(),n=document.createElement('span');n.className='ripple';n.style.left=e.clientX-r.left+'px';n.style.top=e.clientY-r.top+'px';el.appendChild(n);n.addEventListener('animationend',()=>n.remove())};
+  document.querySelectorAll('.card,.btn,.filters button,.group').forEach(el=>{
+    let t=0;
+    el.addEventListener('pointerenter',e=>{ripple(el,e);t=e.timeStamp});
+    el.addEventListener('pointermove',e=>{if(e.timeStamp-t>420){ripple(el,e);t=e.timeStamp}});
+  });
+  cards.forEach(c=>{
+    c.addEventListener('pointermove',e=>{
+      const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--ry',((x-.5)*9).toFixed(2)+'deg');
+      c.style.setProperty('--rx',((.5-y)*9).toFixed(2)+'deg');
+      c.style.setProperty('--gx',(x*100)+'%');c.style.setProperty('--gy',(y*100)+'%');
+    });
+    c.addEventListener('pointerleave',()=>{c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+  });
+}
 
 // Scroll progress
 const bar=document.getElementById('progress');
