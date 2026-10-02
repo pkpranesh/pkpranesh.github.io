@@ -1,184 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranesh P K — AI/ML Engineer</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: #ffffff; }
-        
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            padding: 2rem;
-        }
-        
-        .hero h1 { font-size: 3rem; color: #00d4ff; margin-bottom: 1rem; }
-        .hero p  { font-size: 1.2rem; color: #aaaaaa; margin-bottom: 2rem; max-width: 600px; }
-        
-        .badges { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
-        .badge  { background: #1a1a2e; border: 1px solid #00d4ff; padding: 0.5rem 1rem; border-radius: 20px; color: #00d4ff; font-size: 0.9rem; }
-        
-        .buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-        .btn     { padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
-        .btn-primary   { background: #00d4ff; color: #0a0a0a; }
-        .btn-secondary { background: transparent; border: 2px solid #00d4ff; color: #00d4ff; }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
-        
-        .projects { padding: 5rem 2rem; background: #111111; }
-        .projects h2 { text-align: center; font-size: 2rem; color: #00d4ff; margin-bottom: 3rem; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        
-        .card { background: #1a1a2e; border-radius: 12px; padding: 2rem; border: 1px solid #333; transition: all 0.3s; }
-        .card:hover { border-color: #00d4ff; transform: translateY(-4px); }
-        .card h3 { color: #00d4ff; margin-bottom: 1rem; }
-        .card p  { color: #aaaaaa; margin-bottom: 1.5rem; line-height: 1.6; }
-        .card .tech { color: #666; font-size: 0.85rem; margin-bottom: 1rem; }
-        .card .metric { color: #00ff88; font-weight: bold; margin-bottom: 1.5rem; }
-        .card a { color: #00d4ff; text-decoration: none; margin-right: 1rem; }
-        
-        .skills { padding: 5rem 2rem; background: #0a0a0a; }
-        .skills h2 { text-align: center; font-size: 2rem; color: #00d4ff; margin-bottom: 3rem; }
-        .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 1000px; margin: 0 auto; }
-        .skill-card { background: #1a1a2e; padding: 1.5rem; border-radius: 8px; border-left: 3px solid #00d4ff; }
-        .skill-card h4 { color: #00d4ff; margin-bottom: 0.5rem; }
-        .skill-card p  { color: #aaaaaa; font-size: 0.9rem; line-height: 1.8; }
-        
-        footer { text-align: center; padding: 2rem; color: #666; background: #111; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranesh P K — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090e; --panel:#0f141d; --line:#1c2331; --text:#ebe7dc; --muted:#9aa3b2;
+  --cyan:#00d4ff; --brass:#c9a96a; --green:#5be3a1;
+  --blood:#9b0f18; --blood-hi:#e5424d;
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;
+  --wrap:1120px; --cell:28px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+
+/* ---------- Background: fine grid + blood red glow ---------- */
+.ambient,.grid-bg,.grid-lit,.glow{position:fixed;pointer-events:none;z-index:0}
+.ambient{inset:0;background:
+  radial-gradient(640px circle at 0% 100%,rgba(155,15,24,.30),transparent 70%),
+  radial-gradient(560px circle at 100% 0%,rgba(155,15,24,.20),transparent 70%)}
+.grid-bg,.grid-lit{inset:0;background-size:var(--cell) var(--cell);animation:drift 10s linear infinite}
+.grid-bg{
+  background-image:linear-gradient(rgba(0,212,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.045) 1px,transparent 1px);
+  -webkit-mask-image:radial-gradient(ellipse 100% 80% at 50% 30%,#000 30%,transparent 85%);
+          mask-image:radial-gradient(ellipse 100% 80% at 50% 30%,#000 30%,transparent 85%)}
+.grid-lit{
+  background-image:linear-gradient(rgba(229,66,77,.32) 1px,transparent 1px),linear-gradient(90deg,rgba(229,66,77,.32) 1px,transparent 1px);
+  -webkit-mask-image:radial-gradient(circle 200px at var(--mx,72%) var(--my,28%),#000,transparent);
+          mask-image:radial-gradient(circle 200px at var(--mx,72%) var(--my,28%),#000,transparent)}
+.glow{width:460px;height:460px;left:calc(var(--mx,72%) - 230px);top:calc(var(--my,28%) - 230px);border-radius:50%;
+  background:radial-gradient(circle,rgba(155,15,24,.16),transparent 65%)}
+@keyframes drift{to{background-position:var(--cell) var(--cell)}}
+
+/* ---------- Layout ---------- */
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+section,header{position:relative;z-index:1}
+
+/* ---------- Nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(7,9,14,.96);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--serif);font-weight:600;font-size:1.1rem;text-decoration:none}
+.links{display:flex;gap:2rem;list-style:none}
+.links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;transition:color .2s}
+.links a:hover{color:var(--text)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:linear-gradient(90deg,var(--blood),var(--blood-hi));transform-origin:left;transform:scaleX(0)}
+
+/* ---------- Hero ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 72px}
+.hero .wrap>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero .wrap>:nth-child(2){animation-delay:.12s}
+.hero .wrap>:nth-child(3){animation-delay:.24s}
+.hero .wrap>:nth-child(4){animation-delay:.36s}
+.hero .wrap>:nth-child(5){animation-delay:.48s}
+.hero .wrap>:nth-child(6){animation-delay:.6s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+.status{display:inline-flex;align-items:center;gap:.65rem;color:var(--muted);font-size:.92rem;margin-bottom:1.5rem}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--blood-hi);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(229,66,77,.6)}70%,100%{box-shadow:0 0 0 10px rgba(229,66,77,0)}}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.8rem,7.5vw,5rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:1.3rem}
+.lead{font-family:var(--serif);font-weight:500;font-size:clamp(1.15rem,2.3vw,1.5rem);line-height:1.5;color:var(--muted);max-width:30ch;min-height:3em;margin-bottom:1.8rem}
+.lead b{font-weight:500;color:var(--text)}
+.caret{display:inline-block;width:2px;height:1em;background:var(--blood-hi);margin-left:3px;vertical-align:-.12em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.tags span{border:1px solid var(--line);background:var(--panel);padding:.4rem .95rem;border-radius:999px;font-size:.85rem;font-weight:500}
+.btns{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:3.2rem}
+.btn{padding:.8rem 1.8rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.92rem;border:1px solid var(--cyan);transition:transform .25s,background .25s,box-shadow .25s}
+.btn.primary{background:var(--cyan);color:#041018}
+.btn.ghost{color:var(--cyan)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,255,.16)}
+.btn.ghost:hover{background:rgba(0,212,255,.08)}
+.stats{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);max-width:640px}
+.stat{flex:1 1 150px;padding:1.2rem 1.5rem 0 0}
+.stat+.stat{padding-left:1.5rem;border-left:1px solid var(--line)}
+.stat strong{display:block;font-family:var(--serif);font-weight:600;font-size:1.9rem;color:var(--blood-hi);line-height:1.25}
+.stat span{color:var(--muted);font-size:.85rem}
+
+/* ---------- Section heads ---------- */
+.block{padding:96px 0}
+.head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.2rem;margin-bottom:2.6rem;padding-bottom:1.1rem;border-bottom:1px solid var(--line)}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.4vw,2.4rem);line-height:1.2;letter-spacing:-.01em}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap}
+.filters button{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:.45rem 1.05rem;border-radius:999px;font:500 .85rem var(--sans);cursor:pointer;transition:all .2s}
+.filters button:hover{color:var(--text);border-color:var(--muted)}
+.filters button.on{color:#fff;background:var(--blood);border-color:var(--blood)}
+
+/* ---------- Projects ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.8rem;transition:border-color .3s,transform .3s,box-shadow .3s}
+.card:hover{border-color:rgba(0,212,255,.55);transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.card.star{background:linear-gradient(180deg,#1b0d13,#110b11);border-color:rgba(155,15,24,.6);box-shadow:inset 0 2px 0 var(--blood)}
+.card.star:hover{border-color:var(--blood-hi);box-shadow:inset 0 2px 0 var(--blood-hi),0 18px 40px rgba(120,10,18,.35)}
+.card.hide{display:none}
+.card.pop{animation:pop .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes pop{from{opacity:0;transform:scale(.97)}}
+.card h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.3;margin-bottom:.65rem}
+.card p{color:var(--muted);font-size:.95rem;line-height:1.65;margin-bottom:1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.3rem}
+.chips span{font-size:.78rem;font-weight:500;color:var(--muted);border:1px solid var(--line);padding:.18rem .6rem;border-radius:4px}
+.card.star .chips span{border-color:rgba(155,15,24,.55)}
+.metric{margin-top:auto;margin-bottom:1.3rem;padding:.55rem .9rem;border-left:2px solid var(--green);background:rgba(91,227,161,.07);color:var(--green);font-size:.88rem;font-weight:600}
+.card.star .metric{border-color:var(--blood-hi);background:rgba(155,15,24,.18);color:#ff8089}
+.links2{display:flex;gap:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+.card.star .links2{border-color:rgba(155,15,24,.4)}
+.links2 a{color:var(--cyan);text-decoration:none;font-size:.9rem;font-weight:600;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
+.card.star .links2 a{color:#ff8089}
+.links2 a:hover{background-size:100% 1px}
+
+/* ---------- Stack ---------- */
+.stack{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden}
+.group{padding:1.7rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.group:nth-child(3n){border-right:0}
+.group:nth-last-child(-n+3){border-bottom:0}
+.group h4{font-family:var(--serif);font-weight:600;font-size:1.1rem;color:var(--brass);margin-bottom:.9rem}
+.group .chips{margin:0}
+.group.learn{background:linear-gradient(180deg,#1b0d13,#110b11)}
+.group.learn h4{color:var(--blood-hi)}
+.group.learn .chips span{border-color:rgba(155,15,24,.7);color:#ff8089}
+
+/* ---------- Contact ---------- */
+.contact{padding:96px 0 72px;border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(7,9,14,.9),rgba(60,6,12,.55))}
+.contact p{color:var(--muted);margin-bottom:1rem}
+.mail{font-family:var(--serif);font-weight:500;font-size:clamp(1.4rem,4vw,2.5rem);text-decoration:none;display:inline-block;margin-bottom:2rem;padding-bottom:.2rem;background:linear-gradient(var(--blood-hi),var(--blood-hi)) 0 100%/100% 1px no-repeat;transition:color .25s}
+.mail:hover{color:var(--blood-hi)}
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:1.5rem 0;color:var(--muted);font-size:.85rem;background:#05070a}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}
+
+/* ---------- Responsive ---------- */
+@media(max-width:860px){.stack{grid-template-columns:repeat(2,1fr)}.group:nth-child(3n){border-right:1px solid var(--line)}.group:nth-child(2n){border-right:0}.group:nth-last-child(-n+3){border-bottom:1px solid var(--line)}.group:nth-last-child(-n+2){border-bottom:0}}
+@media(max-width:600px){
+  .wrap{padding:0 20px}.links{gap:1.2rem}.block{padding:72px 0}.grid{grid-template-columns:1fr}
+  .stack{grid-template-columns:1fr}.group{border-right:0!important;border-bottom:1px solid var(--line)!important}.group:last-child{border-bottom:0!important}
+  .stat+.stat{padding-left:1rem}.stat{padding-right:1rem}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
 
+<div class="ambient" aria-hidden="true"></div>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="grid-lit" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Pranesh P K</a>
+    <ul class="links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#stack">Tech stack</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="progress" id="progress"></div>
+</nav>
+
 <!-- HERO -->
-<section class="hero">
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="status"><i></i>SRM IST, B.Tech ECE, Class of 2027</div>
     <h1>Pranesh P K</h1>
-    <p>AI/ML Engineer building LLM applications, RAG systems, and production ML pipelines</p>
-    
-    <div class="badges">
-        <span class="badge">🤖 LLM Engineering</span>
-        <span class="badge">🔍 RAG Systems</span>
-        <span class="badge">📊 ML Engineering</span>
-        <span class="badge">🚀 Streamlit Deployment</span>
+    <p class="lead">AI/ML Engineer building <b id="typed"></b><span class="caret"></span></p>
+    <div class="tags">
+      <span>LLM Engineering</span>
+      <span>RAG Systems</span>
+      <span>ML Engineering</span>
+      <span>Streamlit Deployment</span>
     </div>
-    
-    <div class="buttons">
-        <a href="YOUR_GITHUB_URL" class="btn btn-primary">GitHub</a>
-        <a href="YOUR_LINKEDIN_URL" class="btn btn-secondary">LinkedIn</a>
-        <a href="mailto:pp0383@srmist.edu.in" class="btn btn-secondary">Contact</a>
+    <div class="btns">
+      <a href="YOUR_GITHUB_URL" class="btn primary">GitHub</a>
+      <a href="YOUR_LINKEDIN_URL" class="btn ghost">LinkedIn</a>
+      <a href="mailto:pp0383@srmist.edu.in" class="btn ghost">Contact</a>
     </div>
-</section>
+    <div class="stats">
+      <div class="stat"><strong>6</strong><span>Live projects</span></div>
+      <div class="stat"><strong>91.5%</strong><span>Best model accuracy</span></div>
+      <div class="stat"><strong>Top 35%</strong><span>Kaggle Titanic</span></div>
+    </div>
+  </div>
+</header>
 
 <!-- PROJECTS -->
-<section class="projects">
-    <h2>🚀 Live Projects</h2>
+<section class="block" id="projects">
+  <div class="wrap">
+    <div class="head">
+      <h2>Live Projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="on" data-f="all">All</button>
+        <button data-f="llm">LLM &amp; RAG</button>
+        <button data-f="ml">Machine Learning</button>
+      </div>
+    </div>
+
     <div class="grid">
-        
-        <div class="card">
-            <h3>🤖 AI Document Q&A</h3>
-            <p>RAG system that lets you chat with any PDF using AI. Ask questions and get accurate, document-grounded answers.</p>
-            <div class="tech">ChromaDB · Gemini API · Sentence Transformers · Streamlit</div>
-            <div class="metric">⭐ Star Project — RAG Pipeline</div>
-            <a href="YOUR_STREAMLIT_URL" target="_blank">Live Demo →</a>
-            <a href="YOUR_GITHUB_URL" target="_blank">GitHub →</a>
-        </div>
-        
-        <div class="card">
-            <h3>📄 AI Resume Analyzer</h3>
-            <p>Upload your resume and get instant AI-powered feedback — skill gaps, ATS score, role recommendations.</p>
-            <div class="tech">Gemini API · PyPDF2 · Streamlit</div>
-            <div class="metric">⭐ LLM-Powered Application</div>
-            <a href="YOUR_STREAMLIT_URL" target="_blank">Live Demo →</a>
-            <a href="YOUR_GITHUB_URL" target="_blank">GitHub →</a>
-        </div>
-        
-        <div class="card">
-            <h3>🏦 Credit Risk Predictor</h3>
-            <p>Predicts loan default risk using ensemble ML. Compares Decision Tree, Random Forest, and XGBoost.</p>
-            <div class="tech">XGBoost · Random Forest · Streamlit · Optuna</div>
-            <div class="metric">✅ 91.5% Accuracy</div>
-            <a href="YOUR_STREAMLIT_URL" target="_blank">Live Demo →</a>
-            <a href="YOUR_GITHUB_URL" target="_blank">GitHub →</a>
-        </div>
-        
-        <div class="card">
-            <h3>🏥 Diabetes Risk Predictor</h3>
-            <p>Medical ML app predicting diabetes risk from patient vitals with threshold tuning for medical safety.</p>
-            <div class="tech">Logistic Regression · Scikit-learn · Streamlit</div>
-            <div class="metric">✅ 75.3% Accuracy | 67% Recall</div>
-            <a href="YOUR_STREAMLIT_URL" target="_blank">Live Demo →</a>
-            <a href="YOUR_GITHUB_URL" target="_blank">GitHub →</a>
-        </div>
-        
-        <div class="card">
-            <h3>🏠 House Price Predictor</h3>
-            <p>Predicts California house prices using Multiple Linear Regression with interactive UI.</p>
-            <div class="tech">Linear Regression · Scikit-learn · Streamlit</div>
-            <div class="metric">✅ R² = 0.527 on 20,640 records</div>
-            <a href="YOUR_STREAMLIT_URL" target="_blank">Live Demo →</a>
-            <a href="YOUR_GITHUB_URL" target="_blank">GitHub →</a>
-        </div>
-        
-        <div class="card">
-            <h3>🏆 Kaggle Titanic</h3>
-            <p>Survival prediction using feature engineering, XGBoost, and Voting Ensemble on the classic Kaggle competition.</p>
-            <div class="tech">XGBoost · Voting Ensemble · Optuna · Feature Engineering</div>
-            <div class="metric">✅ 0.784 Score — Top 35%</div>
-            <a href="YOUR_KAGGLE_URL" target="_blank">Kaggle →</a>
-            <a href="YOUR_GITHUB_URL" target="_blank">GitHub →</a>
-        </div>
-        
+      <article class="card star" data-cat="llm">
+        <h3>AI Document Q&amp;A</h3>
+        <p>RAG system that lets you chat with any PDF using AI. Ask questions and get accurate, document-grounded answers.</p>
+        <div class="chips" data-list="ChromaDB · Gemini API · Sentence Transformers · Streamlit"></div>
+        <div class="metric">Star Project — RAG Pipeline</div>
+        <div class="links2"><a href="YOUR_STREAMLIT_URL" target="_blank" rel="noopener">Live demo</a><a href="YOUR_GITHUB_URL" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+
+      <article class="card star" data-cat="llm">
+        <h3>AI Resume Analyzer</h3>
+        <p>Upload your resume and get instant AI-powered feedback — skill gaps, ATS score, role recommendations.</p>
+        <div class="chips" data-list="Gemini API · PyPDF2 · Streamlit"></div>
+        <div class="metric">LLM-Powered Application</div>
+        <div class="links2"><a href="YOUR_STREAMLIT_URL" target="_blank" rel="noopener">Live demo</a><a href="YOUR_GITHUB_URL" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+
+      <article class="card" data-cat="ml">
+        <h3>Credit Risk Predictor</h3>
+        <p>Predicts loan default risk using ensemble ML. Compares Decision Tree, Random Forest, and XGBoost.</p>
+        <div class="chips" data-list="XGBoost · Random Forest · Streamlit · Optuna"></div>
+        <div class="metric">91.5% Accuracy</div>
+        <div class="links2"><a href="YOUR_STREAMLIT_URL" target="_blank" rel="noopener">Live demo</a><a href="YOUR_GITHUB_URL" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+
+      <article class="card" data-cat="ml">
+        <h3>Diabetes Risk Predictor</h3>
+        <p>Medical ML app predicting diabetes risk from patient vitals with threshold tuning for medical safety.</p>
+        <div class="chips" data-list="Logistic Regression · Scikit-learn · Streamlit"></div>
+        <div class="metric">75.3% Accuracy | 67% Recall</div>
+        <div class="links2"><a href="YOUR_STREAMLIT_URL" target="_blank" rel="noopener">Live demo</a><a href="YOUR_GITHUB_URL" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+
+      <article class="card" data-cat="ml">
+        <h3>House Price Predictor</h3>
+        <p>Predicts California house prices using Multiple Linear Regression with interactive UI.</p>
+        <div class="chips" data-list="Linear Regression · Scikit-learn · Streamlit"></div>
+        <div class="metric">R² = 0.527 on 20,640 records</div>
+        <div class="links2"><a href="YOUR_STREAMLIT_URL" target="_blank" rel="noopener">Live demo</a><a href="YOUR_GITHUB_URL" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+
+      <article class="card" data-cat="ml">
+        <h3>Kaggle Titanic</h3>
+        <p>Survival prediction using feature engineering, XGBoost, and Voting Ensemble on the classic Kaggle competition.</p>
+        <div class="chips" data-list="XGBoost · Voting Ensemble · Optuna · Feature Engineering"></div>
+        <div class="metric">0.784 Score — Top 35%</div>
+        <div class="links2"><a href="YOUR_KAGGLE_URL" target="_blank" rel="noopener">Kaggle</a><a href="YOUR_GITHUB_URL" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
     </div>
+  </div>
 </section>
 
-<!-- SKILLS -->
-<section class="skills">
-    <h2>🛠️ Tech Stack</h2>
-    <div class="skill-grid">
-        
-        <div class="skill-card">
-            <h4>AI / ML</h4>
-            <p>Scikit-learn · XGBoost · Random Forest · Linear Regression · Logistic Regression · Decision Trees</p>
-        </div>
-        
-        <div class="skill-card">
-            <h4>LLM / GenAI</h4>
-            <p>Gemini API · Hugging Face · LangChain · ChromaDB · RAG Systems · Sentence Transformers</p>
-        </div>
-        
-        <div class="skill-card">
-            <h4>Data Science</h4>
-            <p>Pandas · NumPy · Matplotlib · Seaborn · SQL · Statistical Analysis · Feature Engineering</p>
-        </div>
-        
-        <div class="skill-card">
-            <h4>Deployment</h4>
-            <p>Streamlit · Git · GitHub · Docker (learning) · FastAPI (learning)</p>
-        </div>
-        
-        <div class="skill-card">
-            <h4>Web Development</h4>
-            <p>React · Django · Node.js · Firebase · MySQL · TypeScript · REST APIs</p>
-        </div>
-        
-        <div class="skill-card">
-            <h4>Currently Learning</h4>
-            <p>AI Agents · LangChain · Deep Learning · CNN · MLOps · Fine-tuning LLMs</p>
-        </div>
-        
+<!-- STACK -->
+<section class="block" id="stack">
+  <div class="wrap">
+    <div class="head"><h2>Tech Stack</h2></div>
+    <div class="stack">
+      <div class="group"><h4>AI / ML</h4><div class="chips" data-list="Scikit-learn · XGBoost · Random Forest · Linear Regression · Logistic Regression · Decision Trees"></div></div>
+      <div class="group"><h4>LLM / GenAI</h4><div class="chips" data-list="Gemini API · Hugging Face · LangChain · ChromaDB · RAG Systems · Sentence Transformers"></div></div>
+      <div class="group"><h4>Data Science</h4><div class="chips" data-list="Pandas · NumPy · Matplotlib · Seaborn · SQL · Statistical Analysis · Feature Engineering"></div></div>
+      <div class="group"><h4>Deployment</h4><div class="chips" data-list="Streamlit · Git · GitHub · Docker (learning) · FastAPI (learning)"></div></div>
+      <div class="group"><h4>Web Development</h4><div class="chips" data-list="React · Django · Node.js · Firebase · MySQL · TypeScript · REST APIs"></div></div>
+      <div class="group learn"><h4>Currently Learning</h4><div class="chips" data-list="AI Agents · LangChain · Deep Learning · CNN · MLOps · Fine-tuning LLMs"></div></div>
     </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p>Have a project, internship, or idea in mind? Send me a message.</p>
+    <a class="mail" href="mailto:pp0383@srmist.edu.in">pp0383@srmist.edu.in</a>
+    <div class="btns" style="margin:0">
+      <a href="YOUR_GITHUB_URL" class="btn primary">GitHub</a>
+      <a href="YOUR_LINKEDIN_URL" class="btn ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
 <footer>
-    <p>Pranesh P K — AI/ML Engineer | SRM IST B.Tech ECE 2027 | pp0383@srmist.edu.in</p>
+  <div class="wrap">
+    <span>Pranesh P K — AI/ML Engineer</span>
+    <span>SRM IST B.Tech ECE 2027</span>
+  </div>
 </footer>
 
+<script>
+// Tech lists -> chips
+document.querySelectorAll('[data-list]').forEach(el=>{
+  el.innerHTML=el.dataset.list.split('·').map(s=>'<span>'+s.trim()+'</span>').join('');
+});
+
+// Cursor-lit grid
+const root=document.documentElement;let raf;
+addEventListener('pointermove',e=>{
+  cancelAnimationFrame(raf);
+  raf=requestAnimationFrame(()=>{root.style.setProperty('--mx',e.clientX+'px');root.style.setProperty('--my',e.clientY+'px')});
+},{passive:true});
+
+// Typing effect
+const phrases=['LLM applications','RAG systems','production ML pipelines'];
+const out=document.getElementById('typed');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){out.textContent=phrases.join(', ')}
+else{
+  let p=0,c=0,del=false;
+  (function tick(){
+    const w=phrases[p];
+    out.textContent=w.slice(0,c);
+    if(!del&&c===w.length){del=true;return setTimeout(tick,1600)}
+    if(del&&c===0){del=false;p=(p+1)%phrases.length}
+    c+=del?-1:1;
+    setTimeout(tick,del?35:70);
+  })();
+}
+
+// Project filter
+const cards=[...document.querySelectorAll('.card')];
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));
+  cards.forEach(c=>{
+    const show=b.dataset.f==='all'||c.dataset.cat===b.dataset.f;
+    c.classList.toggle('hide',!show);
+    if(show){c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop')}
+  });
+}));
+
+// Scroll progress
+const bar=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  bar.style.transform='scaleX('+(h.scrollTop/(h.scrollHeight-h.clientHeight||1))+')';
+},{passive:true});
+</script>
 </body>
 </html>
